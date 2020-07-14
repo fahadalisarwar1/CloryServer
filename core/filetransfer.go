@@ -18,7 +18,7 @@ func (srv *Server)SelectFile2upload(){
 	list_files,err := IOReadDir("./Viruses2upload") // every file to upload must be present in this folder
 	DisplayError(err)
 	for i, file := range list_files{
-		fmt.Println("[",i,"]"," ",file)		// select files based on index displayed
+		fmt.Println("\t\t[",i,"]"," ",file)		// select files based on index displayed
 	}
 	fmt.Println()
 	fmt.Println("Select file number")		// select file based on index, writing name for each file is difficult

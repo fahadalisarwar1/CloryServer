@@ -7,8 +7,10 @@ import (
 
 
 func printUserOptions(){
-	fmt.Println("\t\t[1] Send encrypted file")
-	fmt.Println("\t\t[99] Exit")
+	fmt.Println("\t\t[ 1 ] Send encrypted file")
+	fmt.Println("\t\t[ 99 ] Exit")
+
+	fmt.Print("[+] What do you want to do: ")
 
 }
 
@@ -22,12 +24,11 @@ func (s *Server) HandleConnection(){
 
 	MainLoop := true	// for continously asking user for input
 	for MainLoop {
+		
 		printUserOptions()
-		fmt.Print("[+] What do you want to do: ")
+
 		userInput, err := GetUserInput()
 		DisplayError(err)
-		//fmt.Println(userInput)
-
 		err = s.SendData(userInput)	// sending so client is at the same level
 		DisplayError(err)
 
@@ -36,6 +37,7 @@ func (s *Server) HandleConnection(){
 			fmt.Println("[-] Exiting")
 			MainLoop = false
 			break
+
 		case userInput == "1":
 			fmt.Println("Transfer encrypted file")		//
 			s.SelectFile2upload()
