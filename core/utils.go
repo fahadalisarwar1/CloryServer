@@ -1,6 +1,7 @@
 package core
 
 import (
+	"bufio"
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/md5"
@@ -8,7 +9,9 @@ import (
 	"encoding/hex"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"os"
+	"strings"
 )
 
 func DisplayError(err error){
@@ -51,4 +54,24 @@ func Exists(name string) bool {
 		}
 	}
 	return true
+}
+
+
+func IOReadDir(root string) ([]string, error) {
+	var files []string
+	fileInfo, err := ioutil.ReadDir(root)
+	if err != nil {
+		return files, err
+	}
+	for _, file := range fileInfo {
+		files = append(files, file.Name())
+	}
+	return files, nil
+}
+
+func GetUserInput()(userInput string, err error){
+	reader := bufio.NewReader(os.Stdin)
+	userInput, err = reader.ReadString('\n')
+	userInput = strings.TrimSuffix(userInput, "\n")
+	return userInput, err
 }

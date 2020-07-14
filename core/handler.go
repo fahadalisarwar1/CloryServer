@@ -1,18 +1,10 @@
 package core
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strings"
 )
 
-func getUserInput()(userInput string, err error){
-	reader := bufio.NewReader(os.Stdin)
-	userInput, err = reader.ReadString('\n')
-	userInput = strings.TrimSuffix(userInput, "\n")
-	return userInput, err
-}
+
 
 func printUserOptions(){
 	fmt.Println("\t\t[1] Send encrypted file")
@@ -32,7 +24,7 @@ func (s *Server) HandleConnection(){
 	for MainLoop {
 		printUserOptions()
 		fmt.Print("[+] What do you want to do: ")
-		userInput, err := getUserInput()
+		userInput, err := GetUserInput()
 		DisplayError(err)
 		//fmt.Println(userInput)
 
@@ -40,12 +32,12 @@ func (s *Server) HandleConnection(){
 		DisplayError(err)
 
 		switch {
-		case userInput == "stop" || userInput == "99":
+		case userInput == "stop" || userInput == "99":			// exit condition
 			fmt.Println("Exiting")
 			MainLoop = false
 			break
 		case userInput == "1":
-			fmt.Println("Transfer encrypted file")
+			fmt.Println("Transfer encrypted file")		//
 			s.SelectFile2upload()
 
 		default:
