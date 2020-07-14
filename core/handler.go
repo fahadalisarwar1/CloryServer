@@ -33,7 +33,7 @@ func (s *Server) HandleConnection(){
 
 		switch {
 		case userInput == "stop" || userInput == "99":			// exit condition
-			fmt.Println("Exiting")
+			fmt.Println("[-] Exiting")
 			MainLoop = false
 			break
 		case userInput == "1":
@@ -41,7 +41,7 @@ func (s *Server) HandleConnection(){
 			s.SelectFile2upload()
 
 		default:
-			fmt.Println("you entered : ", userInput)
+			fmt.Println("[-] Invalid, you entered : ", userInput)
 		}
 	}
 }

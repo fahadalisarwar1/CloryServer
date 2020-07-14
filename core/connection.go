@@ -74,6 +74,9 @@ func (s *Server) ReceiveData()(data string, err error){
 }
 
 func (s *Server) ReadFileContent(fileName string)( []byte, error){
+	/*
+		Given a filename as string, reads the contents of the file in buffer and returns them as array of bytes
+	*/
 	file, err := os.Open(fileName)
 	DisplayError(err)
 	defer file.Close()
@@ -86,7 +89,6 @@ func (s *Server) ReadFileContent(fileName string)( []byte, error){
 
 	bufr := bufio.NewReader(file)
 	_,err = bufr.Read(bytes)
-	fmt.Println(bytes)
 	return bytes, err
 }
 
